@@ -1,0 +1,47 @@
+- jeu a somme nul
+- Min/Max + alpha beta = possible
+
+
+- A n’importe quel état du jeu on dispose des informations suivantes:
+*Le nombre de graines dans chaque case du plateau -- via matrice  -- M
+*Le nombre de graines gagnées par le joueur du haut -- entier nat -- P1
+*Le nombre de graines gagnées par le joueur du bas -- entier nat  -- P2
+
+Etat du jeu = (M,P1,P2)
+
+Valeur d'evaluation :
+Plus celle ci est petite, plus le joueur actuel est favorisé par la situation
+Plus elle est grande, plus le joueur actuel est dévaforisé par la situation
+
+Pas avoir 1 ou 2 graines dans une case
+
+FONCTION D'EVALUATION = les graines gagnées et le nombre de cases vulnérables chez l’opposant.
+
+EX Pour joeur 2:
+ Ej2 (M,P1,P2) = (P1 + coeff * V2j(M) - (P2 + coeff * Vj1(M)
+
+coeff < nb graines
+
+- Passer d'une formule de martice à un vecteur !! ( voir tuto )
+
+- Simulation 2 etapes :
+distreuibue
+recolté
+
+
+def distribuerMain(V, debut):
+    N = len(V)
+    i = debut + 1
+    main = V[debut]
+    V[debut] = 0
+
+    while main != 0:
+        if i != debut:
+            V[i] += 1
+            main -= 1
+        i = (i + 1) % N
+
+    fin = i # indice de fin IMPORTANT pour recup grains
+    return V, fin
+
+https://medium.com/@mol02office/implémentation-dune-ia-pour-l-awalé-partie-2-424f7fa1e824
