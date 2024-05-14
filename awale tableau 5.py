@@ -1,6 +1,22 @@
 from enum import Enum
 from typing import List
+import pygame
 
+pygame.init()
+screen = pygame.display.set_mode((843, 596))
+running = True
+
+color = (255, 0, 0)
+image = pygame.image.load("plateau.png").convert()
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        screen.blit(image, (0, 0))
+        pygame.display.flip()
+        
+pygame.quit()
 
 class GameState:
     def __init__(self, p1pad: List[int], p2pad: List[int], p1points: int, p2points: int):
