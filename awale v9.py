@@ -244,15 +244,7 @@ def main():
             break
         state = state.simulate(player, move)
 
-        # Vérifier si un joueur n'a plus de graines
-        if sum(state.p1pad) == 0 or sum(state.p2pad) == 0:
-            winner = state.getWinner()
-            if winner is not None:
-                print(f"Le joueur {winner.name} a gagné !")
-                break
-            else:
-                print("Match nul ! Les deux joueurs n'ont plus de graines.")
-                break
+        
 
         # AI plays after human move
         aiContext = AlphaBetaContext(currentState=state, mainPlayer=opposite, maxDepth=10)
@@ -262,16 +254,9 @@ def main():
             state = state.simulate(opposite, bestAIMove)
         else:
             print("L'IA ne peut pas jouer.")
+            
 
-        # Vérifier si un joueur n'a plus de graines
-        if sum(state.p1pad) == 0 or sum(state.p2pad) == 0:
-            winner = state.getWinner()
-            if winner is not None:
-                print(f"Le joueur {winner.name} a gagné !")
-                break
-            else:
-                print("Match nul ! Les deux joueurs n'ont plus de graines.")
-                break
+        
 
 if __name__ == "__main__":
     main()
